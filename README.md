@@ -1,4 +1,6 @@
-# Aoc
+# Advent of Code
+
+[![Elixir CI](https://github.com/tonnenpinguin/advent_of_code/actions/workflows/elixir.yml/badge.svg)](https://github.com/tonnenpinguin/advent_of_code/actions/workflows/elixir.yml)
 
 My attempt at the [Advent of Code 22](https://adventofcode.com/).
 
