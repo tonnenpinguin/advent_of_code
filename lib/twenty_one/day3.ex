@@ -1,10 +1,10 @@
-defmodule Aoc.Day3 do
+defmodule Aoc.TwentyOne.Day3 do
   use Bitwise
   @input File.read!(Path.join(__DIR__, "inputs/day3.txt"))
   @doc """
   ## Examples
 
-      iex> Aoc.Day3.part1(~s(00100\\n11110\\n10110\\n10111\\n10101\\n01111\\n00111\\n11100\\n10000\\n11001\\n00010\\n01010))
+      iex> #{__MODULE__}.part1(~s(00100\\n11110\\n10110\\n10111\\n10101\\n01111\\n00111\\n11100\\n10000\\n11001\\n00010\\n01010))
       198
   """
   def part1(input \\ @input) do
@@ -65,7 +65,7 @@ defmodule Aoc.Day3 do
   @doc """
   ## Examples
 
-      iex> Aoc.Day3.part2(~s(00100\\n11110\\n10110\\n10111\\n10101\\n01111\\n00111\\n11100\\n10000\\n11001\\n00010\\n01010))
+      iex> #{__MODULE__}.part2(~s(00100\\n11110\\n10110\\n10111\\n10101\\n01111\\n00111\\n11100\\n10000\\n11001\\n00010\\n01010))
       230
   """
   def part2(input \\ @input) do

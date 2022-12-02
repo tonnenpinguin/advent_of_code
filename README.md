@@ -1,6 +1,6 @@
 # Aoc
 
-My attempt at the [Advent of Code 21](https://adventofcode.com/).
+My attempt at the [Advent of Code 22](https://adventofcode.com/).
 
 ## Installation
 

@@ -1,9 +1,9 @@
-defmodule Aoc.Day2 do
+defmodule Aoc.TwentyOne.Day2 do
   @input File.read!(Path.join(__DIR__, "inputs/day2.txt"))
   @doc """
   ## Examples
 
-      iex> Aoc.Day2.part1(~s(forward 5\\ndown 5\\nforward 8\\nup 3\\ndown 8\\nforward 2))
+      iex> #{__MODULE__}.part1(~s(forward 5\\ndown 5\\nforward 8\\nup 3\\ndown 8\\nforward 2))
       150
   """
   def part1(input \\ @input) do
@@ -36,7 +36,7 @@ defmodule Aoc.Day2 do
   @doc """
   ## Examples
 
-      iex> Aoc.Day2.part2(~s(forward 5\\ndown 5\\nforward 8\\nup 3\\ndown 8\\nforward 2))
+      iex> #{__MODULE__}.part2(~s(forward 5\\ndown 5\\nforward 8\\nup 3\\ndown 8\\nforward 2))
       900
   """
   def part2(input \\ @input) do
