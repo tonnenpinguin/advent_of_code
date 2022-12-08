@@ -9,8 +9,9 @@ day=$1
 year="twenty_two"
 yearAtom="TwentyTwo"
 
+session=$(cat .session)
+wget "https://adventofcode.com/2022/day/$day/input" -O "lib/$year/inputs/day$day.txt" --header "Cookie: session=$session"
 
-touch "lib/$year/inputs/day$day.txt"
 cat << EOF > "lib/$year/day$day.ex"
 defmodule Aoc.$yearAtom.Day$day do
   @input File.read!(Path.join(__DIR__, "inputs/day$day.txt"))
