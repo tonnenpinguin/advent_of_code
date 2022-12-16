@@ -1,5 +1,5 @@
 defmodule Aoc.TwentyOne.Day3 do
-  use Bitwise
+  import Bitwise
   @input File.read!(Path.join(__DIR__, "inputs/day3.txt"))
   @doc """
   ## Examples
@@ -93,7 +93,7 @@ defmodule Aoc.TwentyOne.Day3 do
   defp to_binary_list(input, result \\ [])
   defp to_binary_list(<<>>, result), do: result
 
-  defp to_binary_list(<<bit, remaining_bits::binary()>>, result),
+  defp to_binary_list(<<bit, remaining_bits::binary>>, result),
     do: to_binary_list(remaining_bits, result ++ [if(bit == ?1, do: 1, else: 0)])
 
   defp to_oxygen_rating_bitmask(input),
