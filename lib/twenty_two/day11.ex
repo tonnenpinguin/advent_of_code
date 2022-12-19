@@ -52,9 +52,7 @@ defmodule Aoc.TwentyTwo.Day11 do
        do: i * j
 
   defp handle_monkeys(monkeys, rounds, worry_level_fn) do
-    Enum.reduce(1..rounds, monkeys, fn round, monkeys ->
-      IO.puts("Round #{round}")
-
+    Enum.reduce(1..rounds, monkeys, fn _round, monkeys ->
       Enum.reduce(0..(length(monkeys) - 1), monkeys, fn monkey_idx, monkeys ->
         %Monkey{} = monkey = Enum.at(monkeys, monkey_idx)
 
@@ -137,7 +135,6 @@ defmodule Aoc.TwentyTwo.Day11 do
       monkeys
       |> Enum.map(fn %Monkey{divisor: divisor} -> divisor end)
       |> Enum.reduce(&BasicMath.lcm/2)
-      |> IO.inspect()
 
     worry_level_fn = fn worry_level -> rem(worry_level, lcm_of_divisors) end
 
