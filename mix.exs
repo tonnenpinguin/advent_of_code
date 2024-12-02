@@ -22,6 +22,7 @@ defmodule Aoc.MixProject do
   defp deps do
     [
       {:mix_test_watch, "~> 1.0", only: [:dev], runtime: false},
+      {:advent_of_code_utils, "~> 4.0"},
       {:nx, "~> 0.4"}
     ]
   end

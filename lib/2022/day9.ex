@@ -56,7 +56,7 @@ defmodule Aoc.TwentyTwo.Day9 do
   def execute_motion({_, 0}, state), do: state
 
   def execute_motion({dir, dist}, %State{rope: [{x, y} | tail], visited: visited} = state) do
-    %{^dir => {mx, my}} = %{'R' => {1, 0}, 'L' => {-1, 0}, 'U' => {0, 1}, 'D' => {0, -1}}
+    %{^dir => {mx, my}} = %{?R => {1, 0}, ?L => {-1, 0}, ?U => {0, 1}, ?D => {0, -1}}
     new_head = {x + mx, y + my}
     rope = update_rope([new_head | tail])
     state = %{state | rope: rope, visited: MapSet.put(visited, List.last(rope))}
