@@ -23,7 +23,8 @@ defmodule Aoc.MixProject do
     [
       {:mix_test_watch, "~> 1.0", only: [:dev], runtime: false},
       {:advent_of_code_utils, "~> 4.0"},
-      {:nx, "~> 0.4"}
+      {:nx, "~> 0.4"},
+      {:arrays, "~> 2.1"}
     ]
   end
 end

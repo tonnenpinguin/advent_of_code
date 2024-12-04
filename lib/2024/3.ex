@@ -15,9 +15,7 @@ aoc 2024, 3 do
     # For instance, mul(44,46) multiplies 44 by 46 to get a result of 2024.
     # Similarly, mul(123,4) would multiply 123 by 4.
 
-    Regex.scan(~r/mul\((\d{1,3}),(\d{1,3})\)/, input, capture: :all_but_first)
-    |> Enum.map(&multiply/1)
-    |> Enum.sum()
+    do_run(input)
   end
 
   @doc """
@@ -25,6 +23,10 @@ aoc 2024, 3 do
       48
   """
   def p2(input) do
+    do_run(input)
+  end
+
+  defp do_run(input) do
     Regex.scan(~r/(?:(?:do\(\))|(?:don't\(\)))|mul\((\d{1,3}),(\d{1,3})\)/, input)
     |> Enum.reduce({:do, 0}, fn
       ["don't()"], {_, val} ->
