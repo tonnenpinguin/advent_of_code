@@ -22,5 +22,7 @@ jobs:
         with:
           version-file: .tool-versions
           version-type: strict
+      - name: Install deps
+        run: mix deps.get && mix deps.compile
       - name: Run tests
         run: mix test
