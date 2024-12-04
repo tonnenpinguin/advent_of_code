@@ -25,4 +25,3 @@ aoc-*.tar
 # Temporary files, for example, from tests.
 /tmp/
 .session
-input
