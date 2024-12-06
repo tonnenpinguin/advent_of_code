@@ -13,25 +13,26 @@ aoc 2024, 6 do
 
   @doc """
       iex> p1(example_string())
+      41
   """
   def p1(input) do
     map = parse(input)
 
     [start] = find_starting_position(map)
 
-    steps = do_move(map, :up, [start], MapSet.new())
+    steps = do_move(map, {start, :up}, MapSet.new())
 
-    Enum.uniq(steps)
+    steps
+    |> Enum.map(fn {pos, _dir} -> pos end)
+    |> Enum.uniq()
     |> Enum.count()
   end
 
-  defp do_move(map, prev_dir, steps, turns) do
-    current = List.first(steps)
-
-    {pos, dir, turns, looped?} = next_position(map, current, prev_dir, turns)
+  defp do_move(map, {current, prev_dir}, steps) do
+    {pos, _dir} = next = next_position(map, current, prev_dir)
 
     cond do
-      looped? ->
+      MapSet.member?(steps, next) ->
         # We've turned here before
         nil
 
@@ -39,7 +40,7 @@ aoc 2024, 6 do
         steps
 
       true ->
-        do_move(map, dir, [pos | steps], turns)
+        do_move(map, next, MapSet.put(steps, next))
     end
   end
 
@@ -65,16 +66,14 @@ aoc 2024, 6 do
     end
   end
 
-  defp next_position(map, current_position, dir, turns) do
+  defp next_position(map, current_position, dir) do
     potential_next = step(current_position, dir)
 
     if blocked?(map, potential_next) do
       dir = rotate(dir)
-      turn = {current_position, dir}
-
-      {step(current_position, dir), dir, MapSet.put(turns, turn), MapSet.member?(turns, turn)}
+      {current_position, dir}
     else
-      {potential_next, dir, turns, false}
+      {potential_next, dir}
     end
   end
 
@@ -85,15 +84,19 @@ aoc 2024, 6 do
   end
 
   defp find_starting_position(map) do
-    for {row, idx_x} <- Enum.with_index(map),
-        {field, idx_y} <- Enum.with_index(row),
+    for {row, x} <- Enum.with_index(map),
+        {field, y} <- Enum.with_index(row),
         field == "^",
-        do: {idx_x, idx_y}
+        do: {x, y}
   end
 
   @doc """
   1659 is too low
   1667 is too low
+  1728 is incorrect
+  1729 is correct...
+
+  This solution still has a bug that I can't figure out and returns 1732
 
       iex> p2(example_string())
   """
@@ -102,24 +105,28 @@ aoc 2024, 6 do
 
     [start] = find_starting_position(map)
 
-    # steps = do_move(map, :up, [start], MapSet.new()) |> Enum.drop(-1)
-
-    range = 0..(Arrays.size(map) - 1)
-
-    for x <- range, y <- range, map[x][y] != "^" do
-      put_in(map[x][y], "#")
-    end
-    # steps
-    # |> Enum.uniq()
-    # |> Enum.map(fn {x, y} -> put_in(map[x][y], "#") end)
+    do_move(map, {start, :up}, MapSet.new())
+    |> Enum.map(fn {pos, _dir} -> pos end)
+    |> Enum.uniq()
+    # |> Enum.reject(&(&1 == start))
+    |> Enum.map(fn {x, y} -> put_in(map[x][y], "#") end)
     |> Enum.map(fn scenario ->
       Task.async(fn ->
-        do_move(scenario, :up, [start], MapSet.new())
+        do_move(scenario, {start, :up}, MapSet.new())
       end)
     end)
-    |> Task.await_many(10)
+    |> Task.await_many(:infinity)
     |> Enum.filter(&is_nil/1)
     |> Enum.count()
+  end
+
+  defp print(map) do
+    map
+    |> Enum.map(fn line ->
+      Enum.map(line, & &1)
+      |> Enum.join()
+      |> IO.puts()
+    end)
   end
 
   defp parse(input) do
