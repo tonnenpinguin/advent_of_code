@@ -8,9 +8,6 @@ aoc 2024, 5 do
   @doc """
       iex> p1(example_string())
       143
-
-      iex> p1(input_string())
-      5374
   """
   def p1(input) do
     {ordering_rules, updates} = parse(input)
@@ -26,9 +23,6 @@ aoc 2024, 5 do
   @doc """
       iex> p2(example_string())
       123
-
-      iex> p2(input_string())
-      4260
   """
   def p2(input) do
     {ordering_rules, updates} = parse(input)

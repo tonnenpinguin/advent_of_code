@@ -8,8 +8,6 @@ aoc 2024, 2 do
   @doc """
       iex> p1(example_string())
       2
-
-      iex> p1(input_string()) |> dbg()
   """
   def p1(input) do
     input
@@ -40,8 +38,6 @@ aoc 2024, 2 do
   @doc """
       iex> p2(example_string())
       4
-
-      iex> p2(input_string()) |> dbg()
   """
   def p2(input) do
     input
